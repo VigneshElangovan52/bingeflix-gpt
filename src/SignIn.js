@@ -1,14 +1,20 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import {isValid} from "./utils/isValid.js";
 
 const SignIn = () => {
   const [signInFlag, setSignInFlag] = useState(true);
+
+  const name = useRef(null);
+  const email = useRef(null);
+  const password = useRef(null);
 
   const signupHandler = () => {
     setSignInFlag(!signInFlag);
   };
 
   const submitHandler = () => {
-    alert('You are signed in now!!');
+    const messgage = isValid(name.current.value, email.current.value, password.current.value);
+    alert(messgage);
   }
 
   return (
@@ -24,16 +30,20 @@ const SignIn = () => {
         </h1>
         <input
           className="border border-solid p-3 my-2   border-black rounded-md bg-stone-700 w-full text-white"
+          ref={name}
           placeholder={signInFlag ? "Email or phone number" : "Full Name"}
         />
         {!signInFlag && (
           <input
             className="border border-solid p-3 my-2   border-black rounded-md bg-stone-700 w-full text-white"
             placeholder="Your Email or Phone Number"
+            ref={email}
           />
         )}
         <input
           className="border border-solid p-3 my-2 border-black rounded-md bg-stone-700 w-full text-white"
+          type="password"
+          ref={password}
           placeholder={signInFlag ? "Password" : "Enter a Password"}
         />
         <button className="font-semibold border border-solid border-black bg-red-700 w-full rounded-md my-2 p-3 text-white" onClick={()=>submitHandler()}>
