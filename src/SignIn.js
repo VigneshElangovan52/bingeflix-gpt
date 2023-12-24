@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
 import {isValid} from "./utils/isValid.js";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./utils/auth.js";
 
 const SignIn = () => {
   const [signInFlag, setSignInFlag] = useState(true);
@@ -13,8 +15,39 @@ const SignIn = () => {
   };
 
   const submitHandler = () => {
-    const messgage = isValid(name.current.value, email.current.value, password.current.value);
-    alert(messgage);
+    const message = isValid(name.current.value, email.current.value, password.current.value);
+    if (message !== 'Sign in successfully completed!!!') return alert(message);
+     if (!signInFlag) {
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    console.log(userCredential,user, 'user1');
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(error, 'err1');
+    alert(errorCode + '-' + errorMessage);
+    // ..
+  });
+    }
+    else {
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    console.log(userCredential,user, 'user2');
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(error, 'err2');
+    alert(errorCode + '-' + errorMessage);
+  });
+    }
   }
 
   return (
