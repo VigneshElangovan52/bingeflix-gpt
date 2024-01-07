@@ -8,7 +8,7 @@ import {
 import { auth } from "./utils/auth.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addUser, removeUser } from './utils/userSlice';
+import { addUser} from './utils/userSlice';
 import Header from "./Header.js";
 
 const SignIn = () => {
@@ -69,7 +69,6 @@ const SignIn = () => {
           // ...
         })
         .catch((error) => {
-          console.log(error, "err2");
           const errorMessage = error.message;
           alert(errorMessage);
         });
