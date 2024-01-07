@@ -70,7 +70,12 @@ const SignIn = () => {
         })
         .catch((error) => {
           const errorMessage = error.message;
-          alert(errorMessage);
+          if(errorMessage === 'Firebase: Error (auth/invalid-credential).'){
+            alert('Invalid credentials. Please sign up if not done,else check credentials.');
+          }
+          else{
+            alert(errorMessage);
+          }
         });
     }
   };
