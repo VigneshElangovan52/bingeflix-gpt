@@ -16,8 +16,7 @@ const usePopularMovies = () => {
     const json = await data?.json();
    dispatch(storePopularMovies(json.results));
   }
-  
- // console.log(movieresponse, '1234');
+
 }
 
 export default usePopularMovies;

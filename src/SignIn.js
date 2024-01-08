@@ -8,7 +8,7 @@ import {
 import { auth } from "./utils/auth.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addUser} from './utils/userSlice';
+import { addUser } from "./utils/userSlice";
 import Header from "./Header.js";
 
 const SignIn = () => {
@@ -41,8 +41,15 @@ const SignIn = () => {
               "https://avatars.githubusercontent.com/u/117821648?s=400&u=162c25928ec5327cb857190611a7dbbe860419b0&v=4",
           })
             .then(() => {
-              const {email, displayName, photoURL, uid} = auth.currentUser;
-              dispatch(addUser({email: email, displayName: displayName, photoURL: photoURL, uid: uid}));
+              const { email, displayName, photoURL, uid } = auth.currentUser;
+              dispatch(
+                addUser({
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                  uid: uid,
+                })
+              );
               navigate("/browse");
             })
             .catch((error) => {
@@ -64,16 +71,16 @@ const SignIn = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user, "user2");
           navigate("/browse");
           // ...
         })
         .catch((error) => {
           const errorMessage = error.message;
-          if(errorMessage === 'Firebase: Error (auth/invalid-credential).'){
-            alert('Invalid credentials. Please sign up if not done,else check credentials.');
-          }
-          else{
+          if (errorMessage === "Firebase: Error (auth/invalid-credential).") {
+            alert(
+              "Invalid credentials. Please sign up if not done,else check credentials."
+            );
+          } else {
             alert(errorMessage);
           }
         });
@@ -97,13 +104,13 @@ const SignIn = () => {
         </h1>
         {!signInFlag && (
           <input
-            className="border border-solid p-3 my-2   border-black rounded-md bg-stone-700 w-full text-white"
+            className="border border-solid p-3 my-2 border-black rounded-md bg-stone-700 w-full text-white"
             placeholder="Full Name"
             ref={name}
           />
         )}
         <input
-          className="border border-solid p-3 my-2   border-black rounded-md bg-stone-700 w-full text-white"
+          className="border border-solid p-3 my-2  border-black rounded-md bg-stone-700 w-full text-white"
           ref={email}
           placeholder="Email address"
         />
@@ -120,11 +127,11 @@ const SignIn = () => {
           {signInFlag ? "Sign In" : "Sign Up"}
         </button>
         <p
-          className="flex items-end text-white ml-1 mt-1 cursor-pointer"
+          className="flex items-end hover:underline text-white ml-1 mt-1 cursor-pointer active: no-underline"
           onClick={() => signupHandler()}
         >
           {signInFlag
-            ? "New to Netflix? Sign up now."
+            ? "New to this site? Sign Up now."
             : "Already an user? Sign In now."}
         </p>
       </form>

@@ -18,8 +18,8 @@ const useTrailer = (id) => {
       options
     );
     const results = await movie_data?.json();
-    const res = results.results.filter((item) => item.type === "Trailer");
-    const final = res ? res[0] : results.results[0];
+    const res = results?.results?.filter((item) => item.type === "Trailer");
+    const final = res ? res?.[0] : results?.results?.[0];
     dispatch(storeTrailerVideoKey(final));
   };
 };

@@ -49,7 +49,7 @@ const Header = () => {
         <div className="flex p-2 justify-end">
           <img className="w-14 h-14 mt-1 border items-start border-black rounded-2xl mr-2" alt="usericon" src={userDetails?.photoURL} />
           <p className=" h-10 flex mt-3 items-center p-2 font-semibold text-black">{userDetails?.displayName}</p>
-          <input type="button" value='Log out' className="px-2 mt-4  bg-gradient-to-b from-black bg-opacity-50 mx-2 h-9 rounded-md font-bold text-white bg-stone-700  active:text-white hover:text-red-600" onClick={signOutHandler}/>  
+          <input type="button" value='Log out' className="px-2 mt-4  bg-gradient-to-b from-white bg-opacity-50 mx-2 h-9 rounded-md font-bold text-white bg-stone-700  active:text-white hover:text-black" onClick={signOutHandler}/>  
         </div>
       )}
     </div>
