@@ -19,7 +19,7 @@ const PrimaryMovie = ({title, vote_average, overview }) => {
           {" "}
           ▶ Play{" "}
         </button>
-        <button className="m-1 text-sm font-mono p-1 px-2 bg-gray-700 border rounded-lg hover:bg-stone-500 border-stone-500 bg-stone-600">
+        <button className="m-1 text-sm font-mono p-1 px-2 bg-gray-700 border rounded-lg hover:bg-stone-500 border-stone-500">
           {" "}
           ℹ More info{" "}
         </button>
